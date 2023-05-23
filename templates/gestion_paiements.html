@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<br>
+
+<hr>
+
+<br>
+
+
+<h1>Gestion des paiements</h1>
+
+<br>
+
+<hr>
+
+<br>
+
+
+<p>Vous pouvez ajouter, modifier et supprimer les paiements des locataires concernant les loyers</p>
+
+
+<form class="row g-3">
+
+  <div class="col-md-3">
+
+    <label for="locataire">Locataire</label>
+
+    <select class="form-control" id="locataire">
+
+      <option>Locataire 1</option>
+
+      <option>Locataire 2</option>
+
+      <option>Locataire 3</option>
+
+    </select>
+
+  </div>
+
+  <div class="col-md-3">
+
+    <label for="montant">Montant</label>
+
+    <input type="text" class="form-control" id="montant">
+
+  </div>
+
+  <div class="col-md-3">
+
+    <label for="date">Date</label>
+
+    <input type="date" class="form-control" id="date">
+
+  </div >
+
+  <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+</form>
+
+<br>
+
+<hr>
+
+<br>
+
+
+{% endblock %}
+
+

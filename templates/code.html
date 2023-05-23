@@ -1,0 +1,517 @@
+@app.route('/update-appartements/<int:appartements_id>', methods=['GET', 'POST'])
+def update_appartements(appartements_id):
+    if session:
+        # Recherche de l'appartement à modifier par son ID
+        appartement = db_session.query(Appartement).get(appartements_id)
+
+        if not appartement:
+            # L'appartement n'a pas été trouvé, vous pouvez afficher un message d'erreur ou rediriger vers une autre page
+            return redirect('/gestion_appartements')
+
+        if request.method == 'POST':
+            # Récupération des données du formulaire
+            appartement.adresse = request.form['adresse']
+            appartement.surface = int(request.form['surface'])
+            appartement.loyer = int(request.form['loyer'])
+            appartement.nombre_pieces = int(request.form['nombre_pieces'])
+            appartement.etage = int(request.form['etage'])
+
+            # Commit de la session pour effectuer la mise à jour dans la base de données
+            session.commit()
+
+            # Message de succès
+            message = "L'appartement a été modifié avec succès."
+            return render_template('update_appartements.html', appartement=appartement, message=message)
+        else:
+            return render_template('update_appartements.html', appartement=appartement)
+    else:
+        return redirect('/login')
+
+
+
+
+
+
+
+
+
+
+  {% extends "base.html" %}
+
+  {% block content %}
+
+
+<!-- Formulaire pour ajouter un appartement -->
+<h3>Modifier un appartement</h3>
+
+  {% if message %}
+
+    <p style="color:red;">{{ message }}</p>
+
+  {% endif %}
+
+  <form method="POST" action="{{url_for ('update_appartements') }}">
+    <div class="form-group">
+
+   <div class="form-group">
+
+    <label for="adresse">Adresse</label>
+
+    <input type="text" class="form-control" id="adresse" required placeholder="Adresse" name="adresse" value="{{ appartement.adresse }}" >
+
+  </div>
+
+  <div class="form-group">
+
+    <label for="surface">Surface</label>
+
+    <input type="text" class="form-control" id="surface" required placeholder="Surface" name="surface" value="{{ appartement.surface }}" >
+
+  </div>
+
+  <div class="form-group">
+
+    <label for="loyer">Loyer mensuel</label>
+
+    <input type="text" class="form-control" id="loyer" required placeholder="Loyer mensuel" name="loyer" value="{{ appartement.loyer }}" >
+
+  </div>
+
+  <div class="form-group">
+
+    <label for="nombre_pieces">Nombre de pièces</label>
+
+    <input type="text" class="form-control" id="nombre_pieces" required placeholder="Nombre de pièces" name="nombre_pieces" value="{{ appartement.nombre_pieces }}" >
+
+  </div>
+
+  <div class="form-group">
+
+    <label for="etage">Étage</label>
+
+    <input type="text" class="form-control" id="etage" required placeholder="Étage" name="etage" value="{{ appartement.etage }}" >
+
+  </div>
+  </div>
+  <button type="submit" class="btn btn-primary">MODIFIER</button>
+
+</form>
+
+  {% endblock %}
+
+    ajouter locataire:
+
+    <form class="row g-3"  action="#" method="post">
+
+  <div class="col-md-3">
+
+    <label>Nom </label>
+
+    <input type="nom" class="form-control" id="Nom2">
+
+  </div>
+
+  <div class="col-md-3">
+
+    <label>Prénom </label>
+
+    <input type="password" class="form-control" id="inputPassword2">
+
+  </div>
+
+    <div class="col-md-3">
+
+      <label>Date de naissance :</label><br>
+
+      <input type="date" name="date_Naissance"><br>
+
+    </div>
+
+  <div class="col-md-3">
+
+    <label for="inputAddresse" class="form-label">Address</label>
+
+    <input type="text" class="form-control" id="inputAddresse2" placeholder=" 24 Blaise pascal  Paris">
+
+  </div>
+
+  <div class="col-md-6">
+
+    <label for="inputville" class="form-label">Ville</label>
+
+    <input type="text" class="form-control" id="inputVille2">
+
+  </div>
+
+  <div class="col-md-3">
+
+    <label for="input téléphone" class="form-label"> Téléphone </label>
+
+    <select id="input Téléphone" class="form-control">
+
+    </select>
+
+  </div>
+
+  <div class="col-md-3">
+
+     <label for="inputemail" class="form-label">Email</label>
+
+    <input type="email" class="form-control" id="inputEmail">
+
+  </div>
+
+    <div class="col-md-3">
+
+     <label for="input dépôt de garantie" class="form-label">Dépôt de garantie :</label>
+
+    <input type="dépôt de garantie" class="form-control" id="input Dépôt de garantie">
+
+  </div>
+
+  <div class="col-6">
+
+    <button type="submit" class="btn btn-primary"> Ajouter</button>
+
+  </div>
+
+</form>
+
+
+
+ <p>Modifier les informations d'un locataire </p>
+
+ <form class="row g-3"  action="#" method="post">
+
+  <div class="col-md-3">
+
+    <label>Nom </label>
+
+    <input type="nom" class="form-control" id="nom">
+
+  </div>
+
+  <div class="col-md-3">
+
+    <label>Prénom </label>
+
+    <input type="password" class="form-control" id="inputPassword">
+
+  </div>
+
+    <div class="col-md-3">
+
+      <label>Date de naissance :</label><br>
+
+      <input type="date" name="date_Naissance"><br>
+
+    </div>
+
+  <div class="col-4">
+
+    <label for="inputAddresse" class="form-label">Address</label>
+
+    <input type="text" class="form-control" id="inputAddresse" placeholder=" 24 Blaise pascal  Paris">
+
+  </div>
+
+  <div class="col-md-6">
+
+    <label for="inputville" class="form-label">Ville</label>
+
+    <input type="text" class="form-control" id="inputville">
+
+  </div>
+
+  <div class="col-md-3">
+
+    <label for="input téléphone" class="form-label"> Téléphone </label>
+
+    <select id="inputt éléphone" class="form-control">
+
+    </select>
+
+  </div>
+
+  <div class="col-md-3">
+
+     <label for="inputEmail" class="form-label">Email</label>
+
+     <input type="email" class="form-control" id="inputEmail2">
+
+  </div>
+
+    <div class="col-md-3">
+
+     <label for="inputdépôt de garantie" class="form-label">Dépôt de garantie </label>
+
+    <input type="dépôt de garantie" class="form-control" id="inputDépôt de garantie">
+
+  </div>
+
+     <div class="col-6">
+
+     <button type="submit" class="btn btn-primary"> Modifier</button>
+
+  </div>
+
+  </form>
+
+
+    <br>
+
+    <hr>
+
+    <br>
+
+
+    <p>Affecter un locataire à un appartement</p>
+
+<form class="row g-3" action="#" method="post">
+
+  <div class="col-md-3">
+
+    <select class="form-select" aria-label="Default select example">
+
+      <option selected>Sélectionnez un locataire</option>
+
+      <option value="1">One</option>
+
+      <option value="2">Two</option>
+
+      <option value="3">Three</option>
+
+    </select>
+
+  </div>
+
+</form>
+
+
+<form class="row g-3">
+
+  <div class="col-md-3">
+
+    <select class="form-select" aria-label="Default select example">
+
+      <option selected>Appartement</option><br>
+
+      <option value="1">One</option>
+
+      <option value="2">Two</option>
+
+      <option value="3">Three</option>
+
+    </select>
+
+  </div>
+
+  <div class="col-3">
+
+    <input type="submit" class="btn btn-primary" value="Affecter">
+
+  </div>
+
+</form>
+
+
+    <br>
+
+    <hr>
+
+    <br>
+
+
+{% endblock %}
+
+
+
+    from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import declarative_base
+
+# Création du moteur de base de données
+engine = create_engine("postgresql://db_user:zola@localhost:5432/flask_db")
+
+# Déclaration de la base de modèle
+Base = declarative_base()
+
+# Associer le moteur de base de données à la base de modèle
+Base.metadata.bind = engine
+
+# Définition du modèle Appartement
+class Appartement(Base):
+    __tablename__ = 'appartements'
+    id = Column(Integer, primary_key=True)
+    adresse = Column(String)
+    surface = Column(Integer)
+    loyer = Column(Integer)
+    nombre_pieces = Column(Integer)
+    etage = Column(Integer)
+
+# Création des tables dans la base de données
+Base.metadata.create_all(engine)
+
+
+
+
+
+
+    # Définition du modèle Locataire
+class Locataire(Base):
+    __tablename__ = 'locataires'
+    id = Column(Integer, primary_key=True)
+    nom = Column(String)
+    prenom = Column(String)
+    date_naissance = Column(String)
+    adresse = Column(String)
+    ville = Column(String)
+    telephone = Column(String)
+    email = Column(String)
+    depot_garantie = Column(Integer)
+    appartement_id = Column(Integer, ForeignKey('appartements.id'))
+    appartement = relationship("Appartement", back_populates="locataires")
+
+    gestion_locataire:
+
+    {% extends "base.html" %}
+
+{% block content %}
+  <h3>Liste des locataires</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date de naissance</th>
+        <th>Adresse</th>
+        <th>Ville</th>
+        <th>Téléphone</th>
+        <th>Email</th>
+        <th>Dépôt de garantie</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for locataire in locataires %}
+        <tr>
+          <td>{{ locataire.nom }}</td>
+          <td>{{ locataire.prenom }}</td>
+          <td>{{ locataire.date_naissance }}</td>
+          <td>{{ locataire.adresse }}</td>
+          <td>{{ locataire.ville }}</td>
+          <td>{{ locataire.telephone }}</td>
+          <td>{{ locataire.email }}</td>
+          <td>{{ locataire.depot_garantie }}</td>
+          <td>
+            <a class="btn btn-primary" href="{{ url_for('update_locataire', locataire_id=locataire.id) }}">Modifier</a>
+            <a class="btn btn-danger" href="{{ url_for('delete_locataire', locataire_id=locataire.id) }}">Supprimer</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+
+
+
+
+    {% extends "base.html" %}
+
+{% block content %}
+  <h3>Liste des locataires</h3>
+  <a class="btn btn-success" href="{{ url_for('ajouter_locataire') }}">Ajouter un locataire</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date de naissance</th>
+        <th>Adresse</th>
+        <th>Ville</th>
+        <th>Téléphone</th>
+        <th>Email</th>
+        <th>Dépôt de garantie</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for locataire in locataires %}
+        <tr>
+          <td>{{ locataire.nom }}</td>
+          <td>{{ locataire.prenom }}</td>
+          <td>{{ locataire.date_naissance }}</td>
+          <td>{{ locataire.adresse }}</td>
+          <td>{{ locataire.ville }}</td>
+          <td>{{ locataire.telephone }}</td>
+          <td>{{ locataire.email }}</td>
+          <td>{{ locataire.depot_garantie }}</td>
+          <td>
+            <a class="btn btn-primary" href="{{ url_for('update_locataire', locataire_id=locataire.id) }}">Modifier</a>
+            <a class="btn btn-danger" href="{{ url_for('delete_locataire', locataire_id=locataire.id) }}">Supprimer</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h3>Ajouter un locataire</h3>
+  <form method="POST" action="{{ url_for('ajouter_locataire') }}">
+    <div class="form-group">
+      <label for="nom">Nom :</label>
+      <input type="text" class="form-control" id="nom" name="nom">
+    </div>
+    <div class="form-group">
+      <label for="prenom">Prénom :</label>
+      <input type="text" class="form-control" id="prenom" name="prenom">
+    </div>
+    <div class="form-group">
+      <label for="date_naissance">Date de naissance :</label>
+      <input type="date" class="form-control" id="date_naissance" name="date_naissance">
+    </div>
+    <div class="form-group">
+      <label for="adresse">Adresse :</label>
+      <input type="text" class="form-control" id="adresse" name="adresse">
+    </div>
+    <div class="form-group">
+      <label for="ville">Ville :</label>
+      <input type="text" class="form-control" id="ville" name="ville">
+    </div>
+    <div class="form-group">
+      <label for="telephone">Téléphone :</label>
+      <input type="text" class="form-control" id="telephone" name="telephone">
+    </div>
+    <div class="form-group">
+      <label for="email">Email :</label>
+      <input type="email" class="form-control" id="email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="depot_garantie">Dépôt de garantie :</label>
+      <input type="number" class="form-control" id="depot_garantie"name="depot_garantie">
+      </div>
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+  </form>
+{% endblock %}
+
+@app.route('/update-locataire/<int:locataire_id>', methods=['GET', 'POST'])
+def update_locataire(locataire_id):
+    locataire = Locataire.query.get(locataire_id)
+
+    if not locataire:
+        return redirect(url_for('gestion_locataires'))
+
+    if request.method == 'POST':
+        locataire.nom = request.form['nom']
+        locataire.prenom = request.form['prenom']
+        locataire.date_naissance = request.form['date_naissance']
+        locataire.adresse = request.form['adresse']
+        locataire.ville = request.form['ville']
+        locataire.telephone = request.form['telephone']
+        locataire.email = request.form['email']
+        locataire.depot_garantie = request.form['depot_garantie']
+
+        db.session.commit()
+
+        return redirect(url_for('gestion_locataires'))
+
+    return render_template('update_locataire.html')

@@ -1,0 +1,64 @@
+
+
+  {% extends "base.html" %}
+
+  {% block content %}
+
+
+<!-- Formulaire pour ajouter un appartement -->
+<h3>Ajouter un appartement</h3>
+
+  {% if message %}
+
+    <p style="color:red;">{{ message }}</p>
+
+  {% endif %}
+
+  <form method="POST" action="{{url_for ('add_appartements') }}">
+    <div class="form-group">
+
+   <div class="form-group">
+
+    <label for="adresse">Adresse</label>
+
+    <input type="text" class="form-control" id="adresse" required placeholder="Adresse" name="adresse" >
+
+  </div>
+
+  <div class="form-group">
+
+    <label for="surface">Surface</label>
+
+    <input type="text" class="form-control" id="surface" required placeholder="Surface" name="surface" >
+
+  </div>
+
+  <div class="form-group">
+
+    <label for="loyer">Loyer mensuel</label>
+
+    <input type="text" class="form-control" id="loyer" required placeholder="Loyer mensuel" name="loyer" >
+
+  </div>
+
+  <div class="form-group">
+
+    <label for="pieces">Nombre de pièces</label>
+
+    <input type="text" class="form-control" id="nombre_pieces" required placeholder="Nombre de pièces" name="nombre_pieces">
+
+  </div>
+
+  <div class="form-group">
+
+    <label for="etage">Étage</label>
+
+    <input type="text" class="form-control" id="etage" required placeholder="Étage" name="etage">
+
+  </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Ajouter</button>
+
+</form>
+
+  {% endblock %}

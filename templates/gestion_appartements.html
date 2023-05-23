@@ -1,0 +1,68 @@
+
+
+  {% extends "base.html" %}
+
+  {% block content %}
+
+  <h2>Gestion des appartements</h2>
+
+  <!-- Formulaire pour ajouter un appartement -->
+
+
+    <a class="btn btn-primary" href="{{url_for ('add_appartements') }}" >Ajouter un apartement</a>
+
+  <!-- Tableau pour afficher la liste des appartements -->
+
+  <h3>Liste des appartements</h3>
+
+  <table class="table">
+
+    <thead>
+
+      <tr>
+        <th>id</th>
+        <th>Adresse</th>
+
+        <th>Surface</th>
+
+        <th>Loyer mensuel</th>
+
+        <th>Nombre de pièces</th>
+
+        <th>Étage</th>
+
+        <th>Action</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <!-- Lignes du tableau générées dynamiquement -->
+
+       {% for appartement in appartements %}
+            <tr>
+                <td>{{ appartement.id }}</td>
+                <td>{{ appartement.adresse }}</td>
+                <td>{{ appartement.surface }}</td>
+                <td>{{ appartement.loyer }}</td>
+                <td>{{ appartement.nombre_pieces }}</td>
+                <td>{{ appartement.etage }}</td>
+                <td>
+                    <a class="btn btn-primary" href="/update-appartement/{{ appartement.id }}">Modifier</a>
+                    <a class="btn btn-danger" href="/delete-appartement/{{ appartement.id }}">Supprimer</a>
+
+                </td>
+            </tr>
+            {% endfor %}
+    </tbody>
+
+  </table>
+
+</div>
+
+{% endblock %}
+
+
+

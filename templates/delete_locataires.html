@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h3>Supprimer le locataire</h3>
+  <p>Êtes-vous sûr de vouloir supprimer le locataire {{ locataire.nom }} {{ locataire.prenom }} ?</p>
+  <form method="POST" action="{{ url_for('delete_locataire', locataire_id=locataire.id) }}">
+    <button type="submit" class="btn btn-danger">Supprimer</button>
+    <a class="btn btn-secondary" href="{{ url_for('gestion_locataires') }}">Annuler</a>
+  </form>
+{% endblock %}

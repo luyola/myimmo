@@ -1,0 +1,36 @@
+
+  {% extends "base.html" %}
+
+  {% block content %}
+
+
+        <h1>Supprimer l'appartement</h1>
+        <p>Voulez-vous vraiment supprimer cet appartement ?</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Adresse</th>
+                    <th>Surface</th>
+                    <th>Loyer</th>
+                    <th>Nombre de pièces</th>
+                    <th>Étage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ appartement.id }}</td>
+                    <td>{{ appartement.adresse }}</td>
+                    <td>{{ appartement.surface }}</td>
+                    <td>{{ appartement.loyer }}</td>
+                    <td>{{ appartement.nombre_pieces }}</td>
+                    <td>{{ appartement.etage }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <form method="post" action="{{ url_for('delete_appartement', appartement_id=appartement.id) }}">
+            <input class="btn btn-danger" type="submit" value="Supprimer">
+        </form>
+    </div>
+
+  {% endblock %}

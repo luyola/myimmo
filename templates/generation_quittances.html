@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<body>
+    <h1>Génération des quittances de loyer</h1>
+    <form action="{{ url_for('generation_quittances') }}" method="POST">
+        <p>
+            <label for="date_debut">Date de début :</label>
+        </p>
+        <p>
+            <input type="date" name="date_debut" id="date_debut" required>
+        </p>
+        <br><br>
+       <p>
+            <label for="date_fin">Date de fin :</label>
+       </p>
+        <p>
+            <input type="date" name="date_fin" id="date_fin" required>
+        </p>
+        <br><br>
+        <p>
+            <label for="locataire">Locataire :</label>
+        </p>
+       <p>
+            <select name="locataire" id="locataire" required>
+            {% for locataire in locataires %}
+            <option value="{{ locataire }}">{{ locataire }}</option>
+            {% endfor %}
+        </select>
+       </p>
+        <br><br>
+        <p>
+            <input type="submit" value="Générer">
+        </p>
+    </form>
+</body>
+
+{% endblock %}

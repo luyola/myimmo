@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900&display=swap');
+
+
+* {
+
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  font-family: 'Poppins', sans-serif;
+
+}
+
+
+body {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  min-height: 100vh;
+
+  background-color: #1e212d;
+
+}
+
+
+.wrapper {
+
+  max-width: 400px;
+
+  width: 100%;
+
+  background-color: #fff;
+
+  padding: 25px;
+
+  border-radius: 5px;
+
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+
+}
+
+
+.wrapper .title {
+
+  font-size: 24px;
+
+  font-weight: 600;
+
+  color: #1e212d;
+
+  text-align: center;
+
+  margin-bottom: 10px;
+
+}
+
+
+.wrapper form {
+
+  margin-top: 20px;
+
+}
+
+
+.wrapper form .field {
+
+  position: relative;
+
+  height: 50px;
+
+  width: 100%;
+
+  margin-bottom: 25px;
+
+}
+
+
+.wrapper form .field input {
+
+  height: 100%;
+
+  width: 100%;
+
+  outline: none;
+
+  font-size: 17px;
+
+  padding-left: 20px;
+
+  border-radius: 5px;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  transition: all 0.3s ease;
+
+}
+
+
+.wrapper form .field input:focus {
+
+  border-color: #1e212d;
+
+}
+
+
+.wrapper form .field label {
+
+  position: absolute;
+
+
+  top: 50%;
+
+  left: 20px;
+
+  pointer-events: none;
+
+  color: rgba(0, 0, 0, 0.5);
+
+  font-size: 17px;
+
+  transform: translateY(-50%);
+
+  transition: all 0.3s ease;
+
+}
+
+
+.wrapper form .field input:focus~label,
+
+.wrapper form .field input:valid~label {
+
+  top: -15px;
+
+  font-size: 14px;
+
+  color: #1e212
+
+/* Styles généraux */
+
+body {
+
+  font-family: Arial, sans-serif;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+
+.container {
+
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 20px;
+
+}
+
+

@@ -1,0 +1,110 @@
+<html>
+
+<head>
+
+  <title>Gestion des appartements</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <a class="navbar-brand"  >Gestion des appartements</a>
+
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+    <span class="navbar-toggler-icon"></span>
+
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+
+    <ul class="navbar-nav ml-auto">
+
+      <li class="nav-item">
+
+            {% if session['user'] %}
+
+          <a href="{{ url_for('logout') }}" class="btn btn-sm">Se déconnecter </a>&nbsp
+
+          {% else %}
+
+          <a href="{{ url_for('login') }}" class="btn btn-sm">Se connecter</a>&nbsp
+
+          {% endif %}
+
+
+      </li>
+
+    </ul>
+
+  </div>
+
+</nav>
+
+
+  <header>
+
+        <ul>
+
+          <li>
+
+            <a href="{{ url_for('accueil') }}">Accueil</a>
+
+          </li>
+
+          <li>
+
+            <a href="{{ url_for('gestion_appartements') }}" >Gestion des appartements</a>
+
+          </li>
+
+
+          <li>
+            <a href="{{ url_for('gestion_locataires') }}">Gestion locataires</a>
+          </li>
+          <li>
+            <a href="{{ url_for ('gestion_paiements') }}">Gestion des paiements</a>
+          </li>
+          <li>
+            <a href="{{ url_for ('generation_quittances') }}">Génération des quittances de loyer</a>
+          </li>
+          <li>
+            <a href="{{url_for ('bilan_comptes') }}">Bilan des comptes</a>
+          </li>
+          <li>
+
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+  </header>
+
+    <main>
+
+      {% block content %}
+
+
+      ici on vas afficher tout le contenue
+
+      {% endblock %}
+
+    </main>
+
+    <footer>
+
+      <p>© 2023 Application de gestion locative</p>
+
+    </footer>
+
+  </body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/styles.css">
+
+  <style>
+
+    body {
+
+      background-image: url("static/img/nuit-parisienne.jpg");
+
+      background-size: cover;
+
+      background-position: center;
+
+    }
+
+  </style>
+
+  <title>Gestion Appartements</title>
+
+</head>
+
+<body>
+
+
+
+  <div class="wrapper">
+    {% if erreur %}
+
+    <p align="center" style="color:red;">{{ erreur }}</p>
+
+  {% endif %}
+
+    <form method="POST" action="#">
+
+      <div class="field">
+
+        <input type="text" required id="username" name="username"><br>
+
+        <label for="username">Nom d'utilisateur </label><br>
+
+      </div>
+
+      <div class="field">
+
+        <input type="password" required id="password" name="password"><br><br>
+
+        <label for="password">Mot de passe </label><br>
+
+      </div>
+
+      <div class="field">
+
+        <input type="submit"  value="Se connecter">
+
+      </div>
+
+    </form>
+
+  </div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <meta charset="UTF-8">
+
+    <title>Connexion</title>
+
+  </head>
+
+  <body>
+
+    <h1>Connexion</h1>
+
+    <br>
+
+    <hr>
+
+    <br>
+
+
+    {% if erreur %}
+
+      <p style="color:red;">{{ erreur }}</p>
+
+    {% endif %}
+
+    <form  method="POST">
+
+      <label for="username">Nom d'utilisateur:</label><br>
+
+      <input type="text" id="username" name="username"><br>
+
+      <label for="password">Mot de passe:</label><br>
+
+      <input type="password" id="password" name="password"><br><br>
+
+      <input type="submit" value="Se connecter">
+
+    </form>
+
+  </header>
+
+  </body>
+
+</html>
+
+-->

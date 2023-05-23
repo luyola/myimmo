@@ -1,0 +1,64 @@
+
+
+  {% extends "base.html" %}
+
+  {% block content %}
+
+
+<!-- Formulaire pour ajouter un appartement -->
+<h3>Modifier un appartement</h3>
+
+  {% if message %}
+
+    <p style="color:red;">{{ message }}</p>
+
+  {% endif %}
+
+  <form method="POST" >
+    <div class="form-group">
+
+   <div class="form-group">
+
+    <label for="adresse">Adresse</label>
+
+    <input type="text" class="form-control" id="adresse" required placeholder="Adresse" name="adresse" value="{{ appartement.adresse }}" >
+
+  </div>
+
+  <div class="form-group">
+
+    <label for="surface">Surface</label>
+
+    <input type="text" class="form-control" id="surface" required placeholder="Surface" name="surface" value="{{ appartement.surface }}" >
+
+  </div>
+
+  <div class="form-group">
+
+    <label for="loyer">Loyer mensuel</label>
+
+    <input type="text" class="form-control" id="loyer" required placeholder="Loyer mensuel" name="loyer" value="{{ appartement.loyer }}" >
+
+  </div>
+
+  <div class="form-group">
+
+    <label for="nombre_pieces">Nombre de pièces</label>
+
+    <input type="text" class="form-control" id="nombre_pieces" required placeholder="Nombre de pièces" name="nombre_pieces" value="{{ appartement.nombre_pieces }}" >
+
+  </div>
+
+  <div class="form-group">
+
+    <label for="etage">Étage</label>
+
+    <input type="text" class="form-control" id="etage" required placeholder="Étage" name="etage" value="{{ appartement.etage }}" >
+
+  </div>
+  </div>
+  <button type="submit" class="btn btn-primary">MODIFIER</button>
+
+</form>
+
+  {% endblock %}
