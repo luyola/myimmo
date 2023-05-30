@@ -3,7 +3,7 @@ from sqlalchemy.orm import declarative_base
 
 from sqlalchemy.orm import sessionmaker
 
-# Création du moteur de base de données
+# Création  de base de données
 engine = create_engine("postgresql://db_user:zola@localhost:5432/flask_db")
 
 # Création de la session

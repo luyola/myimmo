@@ -11,6 +11,81 @@
 
 
 <h1>Gestion des paiements</h1>
+ <a class="btn btn-success" href="{{url_for ('add_paiements') }}" >Ajouter un paiement</a>
+
+  <h3>Recherche des locataires par mois</h3>
+
+  <div>
+    <label for="select-month">Mois :</label>
+    <select id="select-month">
+      <option value="1">Janvier</option>
+      <option value="2">Février</option>
+      <option value="3">Mars</option>
+      <option value="4">Avril</option>
+      <option value="5">Mai</option>
+      <option value="6">Juin</option>
+      <option value="7">Juillet</option>
+      <option value="8">Août</option>
+      <option value="9">Septembre</option>
+      <option value="10">Octobre</option>
+      <option value="11">Novembre</option>
+      <option value="12">Décembre</option>
+    </select>
+    <button onclick="chercherLocataires()">Chercher</button>
+  </div>
+
+  <div id="resultats">
+    <!-- Les locataires du mois sélectionné seront affichés ici -->
+  </div>
+
+  <script>
+    function chercherLocataires() {
+      // Récupérer la valeur sélectionnée dans la liste déroulante
+      var mois = document.getElementById("select-month").value;
+
+      // Effectuer une requête AJAX pour obtenir les locataires du mois sélectionné
+
+      // Exemple de requête AJAX
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // Réponse reçue avec succès
+          var locataires = JSON.parse(xhr.responseText);
+
+          // Afficher les locataires dans la div des résultats
+          var resultatsDiv = document.getElementById("resultats");
+          resultatsDiv.innerHTML = "";
+          for (var i = 0; i < locataires.length; i++) {
+            var locataire = locataires[i];
+            var locataireHTML = document.createElement("p");
+            locataireHTML.textContent = locataire.nom + " " + locataire.prenom;
+            resultatsDiv.appendChild(locataireHTML);
+          }
+        }
+      };
+      xhr.open("GET", "/gestion-paiements?mois=" + mois, true);
+      xhr.send();
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br>
 

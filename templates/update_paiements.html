@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Formulaire pour modifier un paiement -->
+<h3>Modifier un paiement</h3>
+
+{% if message %}
+<p style="color: red;">{{ message }}</p>
+{% endif %}
+
+<form method="POST" action="{{ url_for('update_paiement', paiement_id=paiement.id) }}">
+  <div class="form-group">
+    <label for="locataire">Locataire :</label>
+    <select name="locataire" id="locataire" class="form-control" required>
+      {% for locataire in locataires %}
+      <option value="{{ locataire.id }}" {% if locataire.id == paiement.locataire.id %}selected{% endif %}>{{ locataire.nom }} {{ locataire.prenom }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="montant">Montant :</label>
+    <input type="text" name="montant" id="montant" class="form-control" required value="{{ paiement.montant }}">
+  </div>
+  <div class="form-group">
+    <label for="date">Date :</label>
+    <input type="date" name="date" id="date" class="form-control" required value="{{ paiement.date }}">
+  </div>
+  <button type="submit" class="btn btn-primary">Modifier</button>
+</form>
+
+{% endblock %}

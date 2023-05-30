@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models.models import Appartement, Locataire
 
-# Création du moteur de base de données
+# Création de la base de données
 engine = create_engine("postgresql://db_user:zola@localhost:5432/flask_db")
 # Création de la session
 Session = sessionmaker(bind=engine)
@@ -251,26 +251,89 @@ def add_locataires():
 
 
 
-
-
-
-
 # Page de gestion des paiements
-
 @app.route('/gestion-paiements')
-
 def gestion_paiements():
-
     if session:
+        # Récupérer le mois à partir du paramètre d'URL
+        #mois = request.args.get('mois', '')
+        locataires = db_session.query(Locataire).all()
 
-        return render_template('gestion_paiements.html')
 
+        return render_template('gestion_paiements.html', locataires=locataires)
     else:
-
         return redirect('/login')
 
-    # TODO: Ajouter/modifier/supprimer les paiements des locataires concernant les loyers
 
+@app.route('/add-paiements/<int:locataire_id>', methods=['GET', 'POST'])
+def add_paiements(locataire_id):
+    if session:
+
+        locataires = db_session.query(Locataire).get(locataire_id)
+        appartements = db_session.query(Locataire).join(Appartement).filter(locataires == 2).all()
+
+        if request.method == 'POST':
+
+
+            return redirect('/gestion-paiements')
+
+        else:
+
+            return render_template('add_paiements.html', locataires=locataires, appartements=appartements)
+
+    else:
+        return redirect('/login')
+
+
+@app.route('/update-paiements/<int:paiement_id>', methods=['GET', 'POST'])
+def update_paiements(paiement_id):
+    if session:
+        # Recherche du paiement à modifier par son ID
+        paiement = db_session.query(Paiement).get(paiement_id)
+
+        if not paiement:
+            # Le paiement n'a pas été trouvé, afficher un message d'erreur ou rediriger vers la page gestion
+            return redirect('/gestion-paiements')
+
+        if request.method == 'POST':
+            # Mettre à jour les paiements
+            paiement.locataire_id = request.form['locataire']
+            paiement.montant = request.form['montant']
+            paiement.date_paiement = request.form['date']
+
+            db_session.commit()
+
+            # Message de succès
+            message = "Le paiement a été modifié avec succès."
+            return render_template('update_paiements.html', paiement=paiement, locataires=Locataire.query.all(), message=message)
+        else:
+            return render_template('update_paiements.html', paiement=paiement, locataires=Locataire.query.all())
+
+    else:
+        return redirect('/login')
+
+@app.route('/delete-paiement/<int:paiement_id>', methods=['GET', 'POST'])
+def delete_paiement(paiement_id):
+        if session:
+            #paiement à supprimer par son ID
+            paiement = db_session.query(Paiement).get(paiement_id)
+
+            if not paiement:
+                # Si le paiement n'a pas été trouvé, afficher un message d'erreur
+                return redirect('/gestion-paiements')
+
+            if request.method == 'POST':
+                # Supprimer le paiement de la base de données
+                db_session.delete(paiement)
+                db_session.commit()
+
+                # Message de succès
+                message = "Le paiement a été supprimé avec succès."
+                return render_template('delete_paiement.html', message=message)
+            else:
+                return render_template('delete_paiement.html', paiement=paiement)
+        else:
+            return redirect('/login')
 
 
 # Page de génération des quittances de loyer
@@ -287,7 +350,7 @@ def generation_quittances():
 
         return redirect('/login')
 
-    # TODO: Générer la quittance de loyer sur une période donnée si le locataire est en règle des loyers sur la période
+    # Générer la quittance de loyer sur une période donnée si le locataire est en règle des loyers sur la période
 
 
 
@@ -305,7 +368,7 @@ def bilan_comptes():
 
         return redirect('/login')
 
-    # TODO: Faire un bilan des comptes des loyers émis par le locataire lorsqu'il quitte le logement
+    # Faire un bilan des comptes des loyers émis par le locataire lorsqu'il quitte le logement
 
 
 

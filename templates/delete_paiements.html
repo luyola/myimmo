@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h3>Supprimer un paiement</h3>
+
+  {% if message %}
+    <p style="color:red;">{{ message }}</p>
+  {% endif %}
+
+  <form method="POST" action="{{ url_for('delete_paiement', paiement_id=paiement.id) }}">
+    <p>Êtes-vous sûr de vouloir supprimer ce paiement ?</p>
+    <button type="submit" class="btn btn-danger">Supprimer</button>
+  </form>
+{% endblock %}

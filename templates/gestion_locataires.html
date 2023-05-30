@@ -37,7 +37,8 @@
             {% endif %}
           </td>
           <td>
-            <a class="btn btn-primary" href="/update-locataire/{{ locataires.id }}">Modifier</a>
+            <a class="btn btn-primary" href="/update-locatdaire/{{ locataires.id }}">Modifier</a>
+            <a class="btn btn-danger" href="/add-paiements/{{ locataires.id }}/{{ locataires.appartement.id }}">Crée paiement</a>
           </td>
         </tr>
       {% endfor %}

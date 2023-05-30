@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Ajouter un paiement</h3>
+
+    {% if message %}
+        <p style="color:red;">{{ message }}</p>
+    {% endif %}
+
+<form method="POST" action="{{ url_for('gestion_paiements') }}">
+  <div class="form-group">
+    <label for="locataire">Locataire :</label>
+    <select class="form-control" id="locataire" name="locataire">
+
+        <option value="{{ locataires.id }}">{{ locataires.nom }} {{ locataires.prenom }}</option>
+
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="appartement">Appartement :</label>
+
+<select class="form-control" id="appartement" name="appartement">
+  {% for appartements in appartement %}
+    <option value="{{ appartement.id }}">{{ appartement.adresse }}</option>
+  {% endfor %}
+</select>
+
+
+  </div>
+
+  <button type="submit" class="btn btn-primary">Afficher</button>
+</form>
+
+
+
+{% endblock %}
